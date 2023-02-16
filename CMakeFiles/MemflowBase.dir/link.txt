@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/MemflowBase.dir/src/main.cpp.o CMakeFiles/MemflowBase.dir/src/memory.cpp.o -o build/MemflowBase  memflow/src/memflow/target/release/libmemflow_ffi.a -ldl -lm 
