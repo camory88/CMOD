@@ -6,13 +6,13 @@ uint64_t target;
 
 //aimbot 
 float fov = 90.f;
-int smoothnes = 420;
-int boneLock = 5;
+int smoothnes = 2;
+int boneLock = 8;
 int dist = 80;
 
 //extra
-int indexNum = 70;
-float recoilcontrol = 69.f;
+int indexNum = 17000;
+float recoilcontrol = 100.f; // 100 no recoil // 1 recoil full
 
 //Vectors 
 Vector old_aimpunch; 
@@ -22,10 +22,10 @@ Vector targetGlowcolor = Vector(255,69,69);
 //
 // Updated - season 16
 //
-#define OFFSET_GlobalVars 0x144da90//GlobalVars
+#define OFFSET_GlobalVars 0x13609a8//GlobalVars
 
 #define OFFSET_ENTITYLIST 0x1b37938 // cl_entitylist
-#define OFFSET_LOCAL_ENT 0x01ee8b70// LocalPlayer // (.?AVC_GameMovement@@ + 0x8)
+#define OFFSET_LOCAL_ENT (0x01ee8b70 + 0x8)// LocalPlayer // (.?AVC_GameMovement@@ + 0x8)
 #define OFFSET_VIEWANGLES 0x25ac - 0x14 //m_ammoPoolCapacity - 0x14; 
 #define OFFSET_AIMPUNCH 0x24b0 // m_currentFrameLocalPlayer.m_vecPunchWeapon_Angle
 #define OFFSET_ORIGIN 0x014c          //m_vecAbsOrigin
@@ -38,7 +38,7 @@ Vector targetGlowcolor = Vector(255,69,69);
 #define OFFSET_AMMO                 0x1644 //m_ammoInClip
 #define OFFSET_TIMESCALE            0x014d2910 //host_timescale
 
-#define OFFSET_BONES 0x0e98 + 0x48    //0xED0  m_nForceBone +0x48 good
+#define OFFSET_BONES 0x0e98 + 0x48 ////m_nForceBone + 0x50
 
 #define OFFSET_MATRIX 0x11a210 // view_matrix Dump file
 #define OFFSET_RENDER 0x7677280 // view_render Dump file

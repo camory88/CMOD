@@ -384,29 +384,25 @@ bool isAlive(Memory& mem, uint64_t ent)
 
 void BestTarg(Memory& mem, uint64_t player,int LocalTeam)
 {
-	int Team = mem.Read<uint64_t>(player + OFFSET_TEAM);
 	if(isVisibile(mem,player)==true)
 	{
 		if(isKnocked(mem,player)==false)
 		{
-			
-			if(Team != LocalTeam)
-			{
-				Vector LPOS = mem.Read<Vector>(LocalPLayer+OFFSET_ORIGIN);
+			Vector LPOS = mem.Read<Vector>(LocalPLayer+OFFSET_ORIGIN);
 
-				Vector2D screenPos;
-				Vector POS = getBonePosition(mem,player,boneLock);
-				if(ToMeters(POS.DistTo(LPOS)) <= dist)
-	            {
-	            	Vector2D screenPos;
-					world_to_screen(mem,POS,screenPos);
-					if(check_in_fov(screenPos,360)==true)
-					{
-						target = player;
-						
-					}
-	            }
-			}
+			Vector2D screenPos;
+			Vector POS = getBonePosition(mem,player,boneLock);
+			if(ToMeters(POS.DistTo(LPOS)) <= dist)
+	        {
+	        	Vector2D screenPos;
+				world_to_screen(mem,POS,screenPos);
+				if(check_in_fov(screenPos,360)==true)
+				{
+					target = player;
+					
+				}
+	        }
+			
 		}
 	}
 }
