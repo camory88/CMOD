@@ -144,6 +144,14 @@ bool isDummy(Memory& mem, uint64_t entity_ptr)
 	return strncmp(class_name, "CAI_BaseNPC", 11) == 0;
 }
 
+bool isItem(Memory& mem, uint64_t entity_ptr)
+{
+	char class_name[33] = {};
+	get_class_name(mem,entity_ptr, class_name);
+
+	return strncmp(class_name, "CPropSurvival", 13) == 0;
+}
+
 bool isKnocked(Memory& mem, uint64_t entity_ptr)
 {
 	return mem.Read<int>(entity_ptr + OFFSET_BLEED_OUT_STATE) > 0;
@@ -382,14 +390,12 @@ bool isAlive(Memory& mem, uint64_t ent)
 	return mem.Read<int>(ent + OFFSET_LIFE_STATE) == 0;
 }
 
-void BestTarg(Memory& mem, uint64_t player,int LocalTeam)
+void BestTarg(Memory& mem, uint64_t player,Vector LPOS, int LocalTeam)
 {
 	if(isVisibile(mem,player)==true)
 	{
 		if(isKnocked(mem,player)==false)
 		{
-			Vector LPOS = mem.Read<Vector>(LocalPLayer+OFFSET_ORIGIN);
-
 			Vector2D screenPos;
 			Vector POS = getBonePosition(mem,player,boneLock);
 			if(ToMeters(POS.DistTo(LPOS)) <= dist)
@@ -406,6 +412,8 @@ void BestTarg(Memory& mem, uint64_t player,int LocalTeam)
 		}
 	}
 }
+
+
 
 void charge_rifle_hack(Memory& mem)
 {
