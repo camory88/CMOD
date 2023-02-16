@@ -21,7 +21,7 @@ int main()
         //localPLayer
         LocalPLayer = mem.Read<uint64_t>(baseAddress + OFFSET_LOCAL_ENT);
         int LocalTeam = mem.Read<uint64_t>(LocalPLayer + OFFSET_TEAM);
-
+        Vector Lpos = mem.Read<Vector>(LocalPLayer + OFFSET_ORIGIN);
         //gloabls
         CGlobalVars GlobalVars = mem.Read<CGlobalVars>(baseAddress + OFFSET_GlobalVars);
         mem.Read<CGlobalVars>(baseAddress + OFFSET_GlobalVars, GlobalVars );
@@ -29,24 +29,23 @@ int main()
         target = NULL;
         for(int i = 0; i < indexNum; ++i)
         {
-            uint64_t player = mem.Read<uint64_t>(baseAddress + OFFSET_ENTITYLIST+ (i << 5));
-            if(player == 0)continue;
-            if(player == LocalPLayer)continue;
-
-            int team = mem.Read<uint64_t>(player + OFFSET_TEAM);
+            uint64_t entity = mem.Read<uint64_t>(baseAddress + OFFSET_ENTITYLIST+ (i << 5));
+            if(entity == 0)continue;
+            if(entity == LocalPLayer)continue;
+            
+            int team = mem.Read<uint64_t>(entity + OFFSET_TEAM);
             if(team == LocalTeam)continue;
-
-            if(isPlayer(mem,player) == true) 
+            if(isPlayer(mem,entity)) 
             {
-                if(isAlive(mem,player)== true)
+                if(isAlive(mem,entity)== true)
                 {
-                    BestTarg(mem,player,LocalTeam);
-
-                    if(isGlowing(mem,player)== false)
+                    BestTarg(mem,entity,Lpos, LocalTeam);
+                    
+                    if(isGlowing(mem,entity)== false)
                     {
-                        if(player != target)
+                        if(entity != target)
                         {
-                            start_glowing(mem,player,glowColor);
+                           start_glowing(mem,entity,Vector(glowColor));
                         }
                     }
                 }
