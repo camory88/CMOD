@@ -19,6 +19,9 @@ Vector old_aimpunch;
 Vector glowColor = Vector(1.f,0.f,0.f);
 Vector targetGlowcolor = Vector(255,69,69);
 
+//
+// Updated - season 16
+//
 #define OFFSET_GlobalVars 0x144da90//GlobalVars
 
 #define OFFSET_ENTITYLIST 0x1b37938 // cl_entitylist
@@ -82,6 +85,9 @@ Vector targetGlowcolor = Vector(255,69,69);
 
 #define screenMidleX (1920 /2)
 #define screenMidleY (1080 /2)
+
+
+
 
 struct glowMode
 {
