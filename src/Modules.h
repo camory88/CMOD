@@ -108,7 +108,15 @@ void entity_loop(Memory& mem)
         Entity entity(entityPTR);
         if(settings::Lteam_Glow)
         {
-            entity.glow(mem,settings::Lteam_Glow_color);
+            if(entity.Team(mem) == LocalPlayer.Team(mem) && entity.isPlayer(mem))
+            {
+                entity.glow(mem,settings::Lteam_Glow_color);
+            }
+            else if(entity.isGlowing(mem))
+            {
+                entity.disableGlow(mem);
+            }
+            
         }
         else
         {

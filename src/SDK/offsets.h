@@ -28,12 +28,12 @@ namespace settings
     inline int  GLowDist = 1000;
     inline bool loot_Glow   = true;  
     inline bool player_Glow = true;  inline Vector player_Glow_color = Vector(1.f,0.f,0.f);
-    inline bool Lteam_Glow  = false; inline Vector Lteam_Glow_color  = Vector(1.f,0.f,0.f);
+    inline bool Lteam_Glow  = false; inline Vector Lteam_Glow_color  = Vector(0.f,1.f,1.f);
     inline bool team_glow   = false; 
     inline bool self_glow   = false; inline Vector self_glow_color   = Vector(1.f,0.f,0.f);
     inline bool weapon_glow = false; inline Vector weapon_glow_color = Vector(1.f,0.f,0.f);
-    inline bool target_glow = true;  inline Vector target_glow_color = Vector(1.f,0.f,0.f);
-                                     inline Vector dummy_glow_color  = Vector(1.f,0.f,0.f);
+    inline bool target_glow = true;  inline Vector target_glow_color = Vector(0.f,1.f,0.f);
+                                     inline Vector dummy_glow_color  = Vector(0.f,1.f,0.f);
   
     
 }

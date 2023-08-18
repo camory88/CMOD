@@ -73,12 +73,12 @@ void CheatMeun()
         ImGui::Begin("Glow Color CONFIG");
 
         
-        ImGui::ColorPicker4("Player",     (float*)&settings::player_Glow_color);
-        ImGui::ColorPicker4("Local Team", (float*)&settings::Lteam_Glow_color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoOptions | ImGuiColorEditFlags_AlphaBar);
-        ImGui::ColorPicker4("Self",       (float*)&settings::self_glow_color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoOptions | ImGuiColorEditFlags_AlphaBar);
-        ImGui::ColorPicker4("Weapon",     (float*)&settings::weapon_glow_color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoOptions | ImGuiColorEditFlags_AlphaBar);
-        ImGui::ColorPicker4("Aim Target", (float*)&settings::target_glow_color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoOptions | ImGuiColorEditFlags_AlphaBar);
-        ImGui::ColorPicker4("Dummy",      (float*)&settings::dummy_glow_color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoOptions | ImGuiColorEditFlags_AlphaBar);
+        ImGui::ColorPicker4("Player",     (float*)&settings::player_Glow_color,ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoOptions);
+        ImGui::ColorPicker4("Local Team", (float*)&settings::Lteam_Glow_color,ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoOptions);
+        ImGui::ColorPicker4("Self",       (float*)&settings::self_glow_color,ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoOptions);
+        ImGui::ColorPicker4("Weapon",     (float*)&settings::weapon_glow_color,ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoOptions);
+        ImGui::ColorPicker4("Aim Target", (float*)&settings::target_glow_color,ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoOptions);
+        ImGui::ColorPicker4("Dummy",      (float*)&settings::dummy_glow_color,ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoOptions);
         ImGui::End();
     }
     ImGui::End();
