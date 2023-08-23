@@ -1,0 +1,4 @@
+/home/cam/Desktop/CMOD/CMakeFiles/memflow.dir
+/home/cam/Desktop/CMOD/CMakeFiles/MemflowBase.dir
+/home/cam/Desktop/CMOD/CMakeFiles/edit_cache.dir
+/home/cam/Desktop/CMOD/CMakeFiles/rebuild_cache.dir

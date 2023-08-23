@@ -96,7 +96,8 @@
     "any": "cpp",
     "optional": "cpp",
     "iomanip": "cpp",
-    "span": "cpp"
+    "span": "cpp",
+    "codecvt": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }
