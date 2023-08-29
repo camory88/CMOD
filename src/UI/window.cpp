@@ -78,57 +78,58 @@ void CheatMeun()
     if (glow_menu)
     {
         ImGui::Begin("Glowing functions");
-        std::string Glow_type_str = "ERROR";
-        switch (settings::GLOW_type)
-        {
-        case 0:
-            Glow_type_str = "None";
-            break;
-        case 1:
-            Glow_type_str = "Glow";
-            break;
-        case 2:
-            Glow_type_str = "Team";
-            break;
-        case 3:
-            Glow_type_str = "Health";
-            break;
-        case 4:
-            Glow_type_str = "RainBow";
-            break;
-
-        default:
-            Glow_type_str = "ERROR";
-            break;
-        }
-        ImGui::Text(Glow_type_str.c_str());
-        if (ImGui::Button("None"))
-            settings::GLOW_type = 0;
-        ImGui::SameLine();
-        if (ImGui::Button("Glow"))
-            settings::GLOW_type = 1;
-        ImGui::SameLine();
-        if (ImGui::Button("Team"))
-            settings::GLOW_type = 2;
-        ImGui::SameLine();
-        if (ImGui::Button("Health"))
-            settings::GLOW_type = 3;
-        ImGui::SameLine();
-        if (ImGui::Button("Rainbow"))
-            settings::GLOW_type = 4;
+        ImGui::Checkbox("Blood hound Glow", &settings::BloodGlow);
+        //std::string Glow_type_str = "ERROR";
+        //switch (settings::GLOW_type)
+        //{
+        //case 0:
+        //    Glow_type_str = "None";
+        //    break;
+        //case 1:
+        //    Glow_type_str = "Glow";
+        //    break;
+        //case 2:
+        //    Glow_type_str = "Team";
+        //    break;
+        //case 3:
+        //    Glow_type_str = "Health";
+        //    break;
+        //case 4:
+        //    Glow_type_str = "RainBow";
+        //    break;
+//
+        //default:
+        //    Glow_type_str = "ERROR";
+        //    break;
+        //}
+        //ImGui::Text(Glow_type_str.c_str());
+        //if (ImGui::Button("None"))
+        //    settings::GLOW_type = 0;
+        //ImGui::SameLine();
+        //if (ImGui::Button("Glow"))
+        //    settings::GLOW_type = 1;
+        //ImGui::SameLine();
+        //if (ImGui::Button("Team"))
+        //    settings::GLOW_type = 2;
+        //ImGui::SameLine();
+        //if (ImGui::Button("Health"))
+        //    settings::GLOW_type = 3;
+        //ImGui::SameLine();
+        //if (ImGui::Button("Rainbow"))
+        //    settings::GLOW_type = 4;
 
         // ImGui::Checkbox("Loot Glow", &settings::loot_Glow);
 
-        ImGui::Checkbox("Hands Glow", &settings::hand_glow);
-        ImGui::SameLine();
-        ImGui::Checkbox("Hands Glow rainbow", &settings::rainbow_hand_glow);
-
-        ImGui::Checkbox("Wepon Glow", &settings::weapon_glow);
-        ImGui::SameLine();
-        ImGui::Checkbox("Wepon Glow rainbow", &settings::rainbow_weapon_glow);
-
-        ImGui::SliderFloat("Rainbow Speed", &settings::rainbowSpeed, .0005f, .05f);
-        ImGui::SliderInt("Glow Distance", &settings::GLowDist, 10, 1000);
+        //ImGui::Checkbox("Hands Glow", &settings::hand_glow);
+        //ImGui::SameLine();
+        //ImGui::Checkbox("Hands Glow rainbow", &settings::rainbow_hand_glow);
+//
+        //ImGui::Checkbox("Wepon Glow", &settings::weapon_glow);
+        //ImGui::SameLine();
+        //ImGui::Checkbox("Wepon Glow rainbow", &settings::rainbow_weapon_glow);
+//
+        //ImGui::SliderFloat("Rainbow Speed", &settings::rainbowSpeed, .0005f, .05f);
+        //ImGui::SliderInt("Glow Distance", &settings::GLowDist, 10, 1000);
         ImGui::End();
     }
     if (color_menu)

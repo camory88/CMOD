@@ -54,6 +54,9 @@ namespace settings
 
     // glow stuff
     inline int GLowDist = 1000;
+
+    inline bool BloodGlow = true;
+
     inline float rainbowSpeed = .0005f;
 
 
