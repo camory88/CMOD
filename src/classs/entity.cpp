@@ -241,29 +241,27 @@ void Entity::glow(Memory &mem, Vector Color)
 	// 2, 108, 40, 96
 	// glowMode glowStyle = { 0, 118, 125, 100 }; //Default Glow is Outline
 
-	mem.Write<Vector>(ptr + offsets::GLOW_COLOR, Color); // red
-	mem.Write<int>(ptr + offsets::OFFSET_GLOW_ENABLE, 1);							 // Enable Glow
-	mem.Write<int>(ptr + offsets::OFFSET_GLOW_THROUGH_WALLS, 2);					 // Enable Glow Through Walls
-	mem.Write<glowMode>(ptr + offsets::GLOW_TYPE, {118, -86, 50, 125});				 // Glow Mode
+	//mem.Write<Vector>(ptr + offsets::GLOW_COLOR, Color); // red
+	//mem.Write<int>(ptr + offsets::OFFSET_GLOW_ENABLE, 1);							 // Enable Glow
+	//mem.Write<int>(ptr + offsets::OFFSET_GLOW_THROUGH_WALLS, 2);					 // Enable Glow Through Walls
+	//mem.Write<glowMode>(ptr + offsets::GLOW_TYPE, {118, -86, 50, 125});				 // Glow Mode
 }
 
-void Entity::enableTeamColor(Memory &mem)
-{
-}
+
 
 bool Entity::isGlowing(Memory &mem)
 {
-	return mem.Read<int>(ptr + offsets::OFFSET_ITEM_GLOW) == 1363184265;
+	//return mem.Read<int>(ptr + offsets::OFFSET_ITEM_GLOW) == 1363184265;
 }
 
 void Entity::enableGlow(Memory &mem)
 {
-	mem.Write<int>(ptr + offsets::OFFSET_ITEM_GLOW, 1363184265);
+	//mem.Write<int>(ptr + offsets::OFFSET_ITEM_GLOW, 1363184265);
 }
 
 void Entity::disableGlow(Memory &mem)
 {
-	mem.Write<int>(ptr + offsets::OFFSET_ITEM_GLOW, 1411417991);
+	//mem.Write<int>(ptr + offsets::OFFSET_ITEM_GLOW, 1411417991);
 }
 
 

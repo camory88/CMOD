@@ -31,8 +31,11 @@ namespace settings
     inline int indexNum = 17000;
     inline char GameMode[32]{};
     inline bool thierdPerson = false;
-
+    inline bool dumpGame = false;
+    
     // player
+    inline bool autojumpPath = true;
+
 
     // Weapon
     inline bool RSC = true;            // RECOIL SENITIVITY CONTROL
@@ -65,10 +68,6 @@ namespace settings
     inline Vector RainBow_glow_color = Vector(0.f, 0.f, 0.f);
     inline bool hand_glow = false; inline Vector hand_glow_color = Vector(1.f, 0.f, 0.f);inline bool rainbow_hand_glow = false;
     inline bool weapon_glow = false; inline Vector weapon_glow_color = Vector(1.f, 0.f, 0.f);inline bool rainbow_weapon_glow = false;
-
-    
-
-
     inline bool target_glow = true; inline Vector target_glow_color = Vector(0.f, 1.f, 0.f);
     inline Vector dummy_glow_color = Vector(0.f, 1.f, 1.f);
 
@@ -162,9 +161,12 @@ namespace offsets
     inline uint64_t OFFSET_FROLL = OFFSET_FYAW + 0x4;
     inline uint64_t OFFSET_INPUT_SYSTEM = 0x17c3c00; // InputSystem
 
-    inline uint64_t OFFSET_IS_ZOOM = 0x07473138;     // in_zoom=0x0bc1cba0
-    inline uint64_t OFFSET_IS_Shooting = 0x07472f98;     // iin_attack=0x07472f98
-    
+    inline uint64_t in_zoom = 0x07473138;     // in_zoom=0x0bc1cba0
+    inline uint64_t in_attack = 0x07472f98;     // iin_attack=0x07472f98
+    inline uint64_t in_jump = 0x07473098;
+    inline uint64_t m_grapple = 0x2ce8;
+    inline uint64_t m_grappleAttached = 0x0048;
+
     inline uint64_t OFFSET_GlobalVars = 0x16ee8d0;
 
 
@@ -265,3 +267,17 @@ inline float ToMeters(float x)
 {
     return x / 39.62f;
 }
+
+
+    struct CUserCmd {
+    	int command_number; //0x0000
+    	int tick_count; //0x0004
+    	float command_time; //0x0008
+    	Vector viewangles; //0x000C
+    	char pad_0x0018[0x14]; //0x0018 //BYTE
+    	float forwardmove; //0x002C
+    	float sidemove; //0x0030
+    	float upmove; //0x0034
+    	int buttons; //0x0038
+    	char impulse; //0x003C //BYTE
+    };

@@ -86,7 +86,6 @@ public:
 	QAngle Q_BonePos(Memory &mem, int BoneId);
 	QAngle CalculateBestBoneAim(Memory &mem, Entity LocaPlayer, int boneLock, int max_dists, int smothnes, float max_fov);
 
-	void enableTeamColor(Memory &mem);
 	void enableGlow(Memory &mem);
 	void disableGlow(Memory &mem);
 	void setViewAngles_Vector(Memory &mem, Vector angle);

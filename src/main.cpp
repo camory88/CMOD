@@ -5,7 +5,6 @@ Inventory *inventory;
 ConnectorInstance<> connector;
 OsInstance<> os;
 
-
 bool SUS()
 {
     if (Window::RunWindow() > 0)
@@ -14,7 +13,6 @@ bool SUS()
     else
         return false;
 }
-
 
 int main()
 {
@@ -29,25 +27,25 @@ int main()
     ui = std::thread(SUS);
     ui.detach();
 
-    
     while (mem.heartbeat())
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
+
         CGlobalVars GlobalVars = mem.Read<CGlobalVars>(baseAddress + offsets::OFFSET_GlobalVars);
         mem.Read<CGlobalVars>(baseAddress + offsets::OFFSET_GlobalVars, GlobalVars);
         localPTR = mem.Read<uint64_t>(baseAddress + offsets::OFFSET_LOCAL_ENT);
         localWeponPTR = WeaponXEntity(getWeapon(mem)).ptr;
 
-        //printf("------------------------\n");
         entity_loop(mem);
         localPlayer_function(mem);
-        
-        //ChokeLoop(mem);
-        //SilentAim(mem);
+
+        // CUserCmd* cmd = (CUserCmd*)GetUserCmd(mem,(int64_t)localPTR, 0, 7);
+        // Vector calc = Vector(0,0,0);
+        // cmd->viewangles.x += calc.x;
+        // cmd->viewangles.y += calc.y;
+
         if (UI == false)
-        {
             return printf("UI crashed!\n");
-        }
     }
     return printf("Apex not open or crashed!\n");
 }

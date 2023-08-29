@@ -33,6 +33,7 @@ static bool testing_menu = true;
 static bool glow_menu = true;
 static bool weapon_menu = true;
 static bool aimbot_menu = true;
+static bool misc_menu = true;
 
 void CheatMeun()
 {
@@ -128,6 +129,7 @@ void CheatMeun()
 
         ImGui::SliderFloat("Rainbow Speed", &settings::rainbowSpeed, .0005f, .05f);
         ImGui::SliderInt("Glow Distance", &settings::GLowDist, 10, 1000);
+        ImGui::End();
     }
     if (color_menu)
     {
@@ -139,7 +141,17 @@ void CheatMeun()
         ImGui::ColorPicker4("Aim Target", (float *)&settings::target_glow_color, ImGuiColorEditFlags_NoInputs);
         ImGui::End();
     }
-    ImGui::End();
+
+    if (misc_menu)
+    {
+        ImGui::Begin("Misc");
+
+        ImGui::Checkbox("3rd Person", &settings::thierdPerson);
+        ImGui::Checkbox("auto jumpGraple for path", &settings::autojumpPath);
+        ImGui::End();
+    }
+
+    
 }
 void StatMenu()
 {
@@ -153,7 +165,7 @@ void StatMenu()
     ImGui::SameLine();
     ImGui::Checkbox("Glow Color config", &color_menu);
     ImGui::SameLine();
-    ImGui::Checkbox("3rd Person", &settings::thierdPerson);
+    ImGui::Checkbox("Misc", &misc_menu);
     ImGui::SameLine();
     ImGui::Text(settings::GameMode);
     ImGui::End();

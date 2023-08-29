@@ -265,35 +265,47 @@ void localPlayer_function(Memory &mem)
     settings::weapon_Glow_color = {std::get<0>(Rainbow(settings::rainbowSpeed)), std::get<1>(Rainbow(settings::rainbowSpeed)), std::get<2>(Rainbow(settings::rainbowSpeed))};
 
     Entity LocalPlayer(localPTR);
+
+    if (settings::autojumpPath)
+    {
+        mem.Write<int>(baseAddress + offsets::in_jump + 0x8, 4);
+        auto Gn = mem.Read<int>(localPTR + offsets::m_grapple + offsets::m_grappleAttached);
+        if (Gn == 1)
+        {
+            mem.Write<int>(baseAddress + offsets::in_jump + 0x8, 5);
+            mem.Write<int>(baseAddress + 0x0054, 1); // m_grappleActivateTime
+        }
+    }
+
     if (LocalPlayer.isAlive(mem) && !LocalPlayer.isKnocked(mem))
     {
 
-        uint64_t WeaponModeHandle = mem.Read<uint64_t>(localPTR + offsets::OFFSET_ViewModels) & 0xFFFF; // m_hViewModels
-        uint64_t ModelPtr = mem.Read<uint64_t>(baseAddress + offsets::OFFSET_ENTITYLIST + WeaponModeHandle * 0x20);
-
-        if (settings::weapon_glow)
-        {
-            mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_ENABLE, 1);
-            mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_THROUGH_WALLS, 5);
-            mem.Write<glowMode>(ModelPtr + offsets::GLOW_TYPE, {118, -86, 100, 0});
-
-            if (settings::rainbow_weapon_glow)
-                mem.Write<Vector>(ModelPtr + offsets::GLOW_COLOR, settings::weapon_Glow_color);
-            else
-                mem.Write<Vector>(ModelPtr + offsets::GLOW_COLOR, settings::weapon_Glow_color);
-        }
-        else
-        {
-            mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_ENABLE, 2);
-            mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_THROUGH_WALLS, 5);
-        }
-
-        if (settings::hand_glow)
-        {
-        }
-        else
-        {
-        }
+        //if (settings::weapon_glow)
+        //{
+        //    uint64_t WeaponModeHandle = mem.Read<uint64_t>(localPTR + offsets::OFFSET_ViewModels) & 0xFFFF; // m_hViewModels
+        //    uint64_t ModelPtr = mem.Read<uint64_t>(baseAddress + offsets::OFFSET_ENTITYLIST + WeaponModeHandle * 0x20);
+//
+        //    mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_ENABLE, 1);
+        //    mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_THROUGH_WALLS, 5);
+        //    mem.Write<glowMode>(ModelPtr + offsets::GLOW_TYPE, {118, -86, 100, 0});
+//
+        //    if (settings::rainbow_weapon_glow)
+        //        mem.Write<Vector>(ModelPtr + offsets::GLOW_COLOR, settings::weapon_Glow_color);
+        //    else
+        //        mem.Write<Vector>(ModelPtr + offsets::GLOW_COLOR, settings::weapon_Glow_color);
+        //}
+        //else
+        //{
+        //    mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_ENABLE, 2);
+        //    mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_THROUGH_WALLS, 5);
+        //}
+//
+        //if (settings::hand_glow)
+        //{
+        //}
+        //else
+        //{
+        //}
     }
 
     if (!settings::thierdPerson)
@@ -333,13 +345,13 @@ void localPlayer_function(Memory &mem)
             }
         }
 
-        if (mem.Read<int>(baseAddress + offsets::OFFSET_IS_ZOOM + 0x8) == 5)
+        if (mem.Read<int>(baseAddress + offsets::in_zoom + 0x8) == 5)
         {
             QAngle angle = targ.CalculateBestBoneAim(mem, LocalPlayer, settings::aimBone, settings::AimDist, settings::rcs_aimbot, settings::FOV);
             if (angle.x != 0)
                 LocalPlayer.setViewAngles_QAngle(mem, angle);
         }
-        else if (mem.Read<int>(baseAddress + offsets::OFFSET_IS_ZOOM + 0x8) == 4 && mem.Read<int>(baseAddress + offsets::OFFSET_IS_Shooting + 0x8) == 4 && settings::RSC)
+        else if (mem.Read<int>(baseAddress + offsets::in_jump + 0x8) == 4 && mem.Read<int>(baseAddress + offsets::in_attack + 0x8) == 4 && settings::RSC)
         {
             LocalPlayer.recoilControl(mem, 100.f);
         }
@@ -383,17 +395,17 @@ void printMemoryLocation(Memory &apex, uint64_t location, uint64_t size)
 inline static void SilentAim(Memory &mem)
 {
     auto netChannel = mem.Read<intptr_t>(baseAddress + NetChannel);
-    auto chokedCommands = mem.Read<ulong>(netChannel + 0x2028);
-    printf("chokedCommands rn%i\n", chokedCommands);
-    if (chokedCommands <= 0)
+    float chokedCommands = mem.Read<float>(netChannel + 0x2028);
+    printf("chokedCommands rn%f\n", chokedCommands);
+    if (chokedCommands <= 0.f)
         return;
 
     printf("silent 1\n");
     int current_number = mem.Read<int>(baseAddress + CurrentCommand);
     int iDesiredCmdNumber = current_number + 1;
     auto cmdBase = mem.Read<intptr_t>(baseAddress + Commands + 248);
-    auto old_usercmd = cmdBase + (552 * (((intptr_t)iDesiredCmdNumber - 1) % 750));
-    auto usercmd = cmdBase + (552 * ((intptr_t)iDesiredCmdNumber % 750));
+    auto old_usercmd = mem.Read<uint64_t>(cmdBase + (552 * (((intptr_t)iDesiredCmdNumber - 1) % 750)));
+    auto usercmd = mem.Read<uint64_t>(cmdBase + (552 * ((intptr_t)iDesiredCmdNumber % 750)));
     printf("silent 2\n");
     while (mem.Read<int>((intptr_t)usercmd) < iDesiredCmdNumber)
     {
@@ -405,7 +417,7 @@ inline static void SilentAim(Memory &mem)
 }
 inline static void Choke(Memory &mem, intptr_t netChannel)
 {
-    mem.Write<double>(netChannel + 0x2108, std::numeric_limits<float>::max());
+    mem.Write<float>(netChannel + 0x2108, 69.f);
 }
 inline static void ChokeLoop(Memory &mem)
 {
@@ -436,5 +448,4 @@ inline static void ChokeLoop(Memory &mem)
             Choke(mem, netChannel);
         }
     }
-    // }
 }
