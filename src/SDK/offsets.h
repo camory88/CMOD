@@ -5,51 +5,31 @@
 inline uint64_t baseAddress;
 inline uint64_t UIbaseAddress;
 inline uint64_t localPTR;
+inline uint64_t localWeponPTR;
 inline uint64_t target = 0x0;
+inline bool UI = true;
 
-/* team colors
-color = Vector(1.0f, 0.0f, 0.0f);
-color = Vector(0.0f, 1.0f, 0.0f);
-color = Vector(0.0f, 0.0f, 1.0f);
-color = Vector(0.0f, 1.0f, 1.0f);
-color = Vector(1.0f, 0.0f, 1.0f);
-color = Vector(1.0f, 1.0f, 0.0f);
-color = Vector(0.0f, 0.0f, 0.0f);
-color = Vector(1.0f, 1.0f, 1.0f);
-color = Vector(0.5f, 0.5f, 0.5f);
-color = Vector(0.75f, 0.75f, 0.75f);
-color = Vector(0.25f, 0.25f, 0.25f);
-color = Vector(1.0f, 0.5f, 0.0f);
-color = Vector(0.5f, 0.0f, 0.5f);
-color = Vector(0.0f, 0.5f, 0.5f);
-color = Vector(1.0f, 0.75f, 0.75f);
-color = Vector(0.6f, 0.4f, 0.2f);
-color = Vector(0.0f, 0.0f, 0.5f);
-color = Vector(0.5f, 0.5f, 0.0f);
-color = Vector(0.5f, 0.0f, 0.0f);
-color = Vector(0.0f, 0.5f, 0.0f);
-color = Vector(0.0f, 1.0f, 1.0f);
-color = Vector(0.29f, 0.0f, 0.51f);
-color = Vector(1.0f, 0.5f, 0.31f);
-color = Vector(1.0f, 0.84f, 0.0f);
-color = Vector(0.9f, 0.9f, 0.98f);
-color = Vector(0.5f, 0.5f, 0.5f);
-*/
+inline uint64_t NetChannel = 0x16eec2f;
+inline uint64_t Commands = 0x220c650;
+inline uint64_t CurrentCommand = 0x17078ec;
 
-typedef struct player
-{
-    bool valid = false;
-    bool alive = false;
-    float dist = 0;
-    int team = 0;
-    std::string name;
-};
-inline player players[17000];
+inline uint64_t m_nNextThinkTick = 0x05ac;
+inline uint64_t m_lastPrimaryAttackTime = 0x1664;
+inline uint64_t m_nextReadyTime = 0x1668;
+inline uint64_t m_nextPrimaryAttackTime = 0x166c;
+inline uint64_t m_attackTimeThisFrame = 0x1670;
+inline uint64_t m_ammoInClip = 0x1690;
+inline uint64_t m_ammoInStockpile = 0x1694;
+inline uint64_t m_infiniteAmmoState = 0x1698;
+inline uint64_t m_lifetimeShots = 0x169c;
+inline uint64_t m_flTimeWeaponIdle = 0x16a0;
+inline uint64_t m_bInReload = 0x16aa;
+
 
 namespace settings
 {
     inline int indexNum = 17000;
-
+    inline char GameMode[32]{};
     inline bool thierdPerson = false;
 
     // player
@@ -59,6 +39,7 @@ namespace settings
     inline float recoilcontrol = 80.f; // 100 no recoil // 1 recoil full
 
     // aimbot
+    inline bool teamCheack = true;
     inline bool aimbot = true;
     inline bool aimbot_noRecoil = true;
     inline float FOV = 90.f;
@@ -66,30 +47,32 @@ namespace settings
     inline int AimDist = 120;
     inline int aimBone = 5;
 
+    inline Vector2D calangle;
+
     // glow stuff
     inline int GLowDist = 1000;
     inline float rainbowSpeed = .0005f;
 
-    inline bool loot_Glow = false;
-    inline bool player_Glow = true; inline Vector4 player_Glow_color = Vector4(1.f, 0.f, 0.f, 1.f);
-    inline bool Lteam_Glow = false;  inline Vector4 Lteam_Glow_color = Vector4(0.f, 1.f, 1.f, 1.f);
-    inline bool team_glow = false; inline Vector4 team_Glow_color = Vector4(1.f, 0.f, 0.f, 1.f);
-    inline bool hand_glow = false; inline Vector4 hand_glow_color = Vector4(1.f, 0.f, 0.f, 1.f);
-    inline bool rainbow_hand_glow = false;
-    inline bool weapon_glow = false; inline Vector4 weapon_glow_color = Vector4(1.f, 0.f, 0.f, 1.f);
-    inline bool rainbow_weapon_glow = false;
-    inline bool target_glow = true; inline Vector4 target_glow_color = Vector4(0.f, 1.f, 0.f, 1.f);
-    inline Vector4 dummy_glow_color = Vector4(0.f, 1.f, 1.f, 1.f);
 
-    // AI stuff
-    inline bool AI_Active = false;
+    inline int GLOW_type = 0; // 0 none / 1 Player glow / 2 team glow / 3 health glow / 4 rainbow
 
-    inline Vector way_poit_pos = Vector(0, 0, 0);
-    inline bool goToWaypoint = false;
 
-    // stream stuff
-    inline bool nameSpoof = true;
-    inline char SpoofedName[32] = "BRUH!";
+    inline Vector player_Glow_color = Vector(1.f, 0.f, 0.f);
+    inline Vector weapon_Glow_color = Vector(0.f, 1.f, 0.f);
+    inline Vector Hands_Glow_color = Vector(0.f, 0.f, 1.f);
+
+    inline Vector health_Glow_color = Vector(1.f, 0.f, 0.f);
+    inline Vector RainBow_glow_color = Vector(0.f, 0.f, 0.f);
+    inline bool hand_glow = false; inline Vector hand_glow_color = Vector(1.f, 0.f, 0.f);inline bool rainbow_hand_glow = false;
+    inline bool weapon_glow = false; inline Vector weapon_glow_color = Vector(1.f, 0.f, 0.f);inline bool rainbow_weapon_glow = false;
+
+    
+
+
+    inline bool target_glow = true; inline Vector target_glow_color = Vector(0.f, 1.f, 0.f);
+    inline Vector dummy_glow_color = Vector(0.f, 1.f, 1.f);
+
+
 }
 
 #define screenX 1920
@@ -183,6 +166,9 @@ namespace offsets
     inline uint64_t OFFSET_IS_Shooting = 0x07472f98;     // iin_attack=0x07472f98
     
     inline uint64_t OFFSET_GlobalVars = 0x16ee8d0;
+
+
+   inline uint64_t OFFSET_GAMEMODE  = 0x0225d440; //mp_gamemode
 };
 
 

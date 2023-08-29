@@ -17,8 +17,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o.d"
   "CMakeFiles/MemflowBase.dir/src/SDK/Memory/memory.cpp.o"
   "CMakeFiles/MemflowBase.dir/src/SDK/Memory/memory.cpp.o.d"
-  "CMakeFiles/MemflowBase.dir/src/SDK/entity.cpp.o"
-  "CMakeFiles/MemflowBase.dir/src/SDK/entity.cpp.o.d"
   "CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o"
   "CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o.d"
   "CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o"

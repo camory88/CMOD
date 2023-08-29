@@ -71,6 +71,8 @@ public:
 
 	int Team(Memory &mem);
 	int Health(Memory &mem);
+	int Shield(Memory &mem);
+	int MaxHealth(Memory &mem);
 
 	Vector BasePos(Memory &mem);
 	Vector V_CamPos(Memory &mem);
@@ -91,7 +93,7 @@ public:
 	void setViewAngles_QAngle(Memory &mem, QAngle angle);
 	void recoilControl(Memory &mem, float smoothnes);
 	void get_class_name(Memory &mem, char *out_str);
-	void glow(Memory &mem, Vector4 Color);
+	void glow(Memory &mem, Vector Color);
 };
 
 class WeaponXEntity
@@ -109,6 +111,8 @@ public:
 	float get_zoom_fov(Memory &mem);
 	int get_ammo(Memory &mem);
 	int get_Fire_type(Memory &mem);
+
+	
 };
 
 inline uint64_t getWeapon(Memory &mem)

@@ -26,24 +26,36 @@ static void glfw_error_callback(int error, const char *description)
 
 bool isRunning = true;
 bool canCloseProccess = false;
+
 static bool color_menu = false;
+
+static bool testing_menu = true;
+static bool glow_menu = true;
 static bool weapon_menu = true;
-static bool AI_Menu = true;
+static bool aimbot_menu = true;
 
 void CheatMeun()
 {
-    if (settings::aimbot)
+    if (testing_menu)
+    {
+        ImGui::Begin("Testing");
+        
+        ImGui::End();
+    }
+    if (aimbot_menu)
     {
         ImGui::Begin("Aimbot");
         ImGui::Text("AimBot ----------");
         ImGui::SameLine();
         ImGui::Checkbox("No Recoil with aimbot", &settings::aimbot_noRecoil);
+        ImGui::SameLine();
+        ImGui::Checkbox("Team cheack", &settings::teamCheack);
         ImGui::Text("FOV:%.1f", settings::FOV);
         ImGui::SameLine();
         ImGui::SliderFloat("FOV", &settings::FOV, 10.f, 1000.f);
         ImGui::Text("Smothnes:%1.f", settings::rcs_aimbot);
         ImGui::SameLine();
-        ImGui::SliderFloat("Smothnes", &settings::rcs_aimbot, 2.f, 300.f);
+        ImGui::SliderFloat("Smothnes", &settings::rcs_aimbot, 2.f, 100.f);
         ImGui::Text("Aim bone:%i", settings::aimBone);
         ImGui::SameLine();
         ImGui::SliderInt("AimBone", &settings::aimBone, 0, 8);
@@ -62,81 +74,90 @@ void CheatMeun()
 
         ImGui::End();
     }
+    if (glow_menu)
+    {
+        ImGui::Begin("Glowing functions");
+        std::string Glow_type_str = "ERROR";
+        switch (settings::GLOW_type)
+        {
+        case 0:
+            Glow_type_str = "None";
+            break;
+        case 1:
+            Glow_type_str = "Glow";
+            break;
+        case 2:
+            Glow_type_str = "Team";
+            break;
+        case 3:
+            Glow_type_str = "Health";
+            break;
+        case 4:
+            Glow_type_str = "RainBow";
+            break;
 
-    ImGui::Begin("Glow");
-    ImGui::Checkbox("Player Glow", &settings::player_Glow);
-    ImGui::SameLine();
-    ImGui::Checkbox("Local Team Glow", &settings::Lteam_Glow);
-    ImGui::Checkbox("Loot Glow", &settings::loot_Glow);
-    ImGui::SameLine();
-    ImGui::Checkbox("Hands Glow", &settings::hand_glow);
-    ImGui::SameLine();
-    ImGui::Checkbox("Hands Glow rainbow", &settings::rainbow_hand_glow);
-    ImGui::Checkbox("Team Glow", &settings::team_glow);
-    ImGui::SameLine();
-    ImGui::Checkbox("Wepon Glow", &settings::weapon_glow);
-    ImGui::SameLine();
-    ImGui::Checkbox("Wepon Glow rainbow", &settings::rainbow_weapon_glow);
-    ImGui::SliderFloat("Rainbow Speed", &settings::rainbowSpeed, .0005f, .05f);
-    ImGui::SliderInt("Glow Distance", &settings::GLowDist, 10, 1000);
+        default:
+            Glow_type_str = "ERROR";
+            break;
+        }
+        ImGui::Text(Glow_type_str.c_str());
+        if (ImGui::Button("None"))
+            settings::GLOW_type = 0;
+        ImGui::SameLine();
+        if (ImGui::Button("Glow"))
+            settings::GLOW_type = 1;
+        ImGui::SameLine();
+        if (ImGui::Button("Team"))
+            settings::GLOW_type = 2;
+        ImGui::SameLine();
+        if (ImGui::Button("Health"))
+            settings::GLOW_type = 3;
+        ImGui::SameLine();
+        if (ImGui::Button("Rainbow"))
+            settings::GLOW_type = 4;
+
+        // ImGui::Checkbox("Loot Glow", &settings::loot_Glow);
+
+        ImGui::Checkbox("Hands Glow", &settings::hand_glow);
+        ImGui::SameLine();
+        ImGui::Checkbox("Hands Glow rainbow", &settings::rainbow_hand_glow);
+
+        ImGui::Checkbox("Wepon Glow", &settings::weapon_glow);
+        ImGui::SameLine();
+        ImGui::Checkbox("Wepon Glow rainbow", &settings::rainbow_weapon_glow);
+
+        ImGui::SliderFloat("Rainbow Speed", &settings::rainbowSpeed, .0005f, .05f);
+        ImGui::SliderInt("Glow Distance", &settings::GLowDist, 10, 1000);
+    }
     if (color_menu)
     {
         ImGui::Begin("Glow Color CONFIG");
 
         ImGui::ColorPicker4("Player", (float *)&settings::player_Glow_color, ImGuiColorEditFlags_NoInputs);
-        ImGui::ColorPicker4("Local Team", (float *)&settings::Lteam_Glow_color, ImGuiColorEditFlags_NoInputs);
         ImGui::ColorPicker4("Hand", (float *)&settings::hand_glow_color, ImGuiColorEditFlags_NoInputs);
         ImGui::ColorPicker4("Weapon", (float *)&settings::weapon_glow_color, ImGuiColorEditFlags_NoInputs);
         ImGui::ColorPicker4("Aim Target", (float *)&settings::target_glow_color, ImGuiColorEditFlags_NoInputs);
-        ImGui::ColorPicker4("Dummy", (float *)&settings::dummy_glow_color, ImGuiColorEditFlags_NoInputs);
         ImGui::End();
     }
     ImGui::End();
-
-    ImGui::Begin("Loby info");
-    for (int i = 0; i < 17000; ++i)
-    {
-        player p = players[i];
-        if (!p.valid)
-            continue;
-        if (p.alive)
-            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 1.0f, 0.0f, 1.0f)); // Red color
-        else
-            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f)); // Red color
-        ImGui::Text(std::string("Name: " + p.name).c_str());
-        ImGui::SameLine();
-        ImGui::Text(std::string("Team: " + std::to_string(p.team)).c_str());
-        ImGui::SameLine();
-        ImGui::Text(std::string("Distance: " + std::to_string(p.dist)).c_str());
-        ImGui::PopStyleColor();
-    }
-    ImGui::End();
-
-    if (AI_Menu)
-    {
-
-        ImGui::Begin("AI info");
-        ImGui::Text("X:%f Y:%f Z:%f", settings::way_poit_pos.x, settings::way_poit_pos.y, settings::way_poit_pos.z);
-
-        ImGui::Checkbox("Go To waypoint", &settings::goToWaypoint);
-        ImGui::End();
-    }
 }
 void StatMenu()
 {
     ImGui::Begin("Cheats List");
+
     ImGui::Checkbox("Aim Bot", &settings::aimbot);
     ImGui::SameLine();
     ImGui::Checkbox("weapon", &weapon_menu);
     ImGui::SameLine();
-    ImGui::Checkbox("Glow Color config", &color_menu);
+    ImGui::Checkbox("Glow", &glow_menu);
     ImGui::SameLine();
-    ImGui::Checkbox("AI Status", &AI_Menu);
+    ImGui::Checkbox("Glow Color config", &color_menu);
     ImGui::SameLine();
     ImGui::Checkbox("3rd Person", &settings::thierdPerson);
     ImGui::SameLine();
-
+    ImGui::Text(settings::GameMode);
     ImGui::End();
+
     CheatMeun();
 }
 
@@ -279,7 +300,7 @@ int Window::RunWindow()
 
     glfwDestroyWindow(window);
     glfwTerminate();
-
+    UI = false;
     canCloseProccess = true;
 
     return 0;

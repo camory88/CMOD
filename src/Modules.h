@@ -2,7 +2,7 @@
 #include <thread>
 #include "classs/ALLclass.hpp"
 #include "UI/window.hpp"
-
+bool choking = true;
 c_matrix get_matrix(Memory &mem)
 {
     uint64_t viewRenderer = mem.Read<uint64_t>(baseAddress + offsets::OFFSET_RENDER);
@@ -10,7 +10,6 @@ c_matrix get_matrix(Memory &mem)
 
     return mem.Read<c_matrix>(viewMatrix);
 }
-
 bool world_to_screen(Memory &mem, Vector in, Vector2D &out)
 {
 
@@ -79,7 +78,6 @@ namespace Utils
         return sqrtf_(powf_((float)(x1 - x2), (float)2) + powf_((float)(y1 - y2), (float)2));
     }
 }
-
 bool check_in_fov(Vector2D screen_body, float FOVmax)
 {
     float Dist = Utils::GetCrossDistance(screen_body.x, screen_body.y, (screenX / 2), (screenY / 2));
@@ -113,214 +111,140 @@ void entity_loop(Memory &mem)
         if (entityPTR == 0x0)
             continue;
         Entity entity(entityPTR);
-        if (entity.isDummy(mem) || entity.isPlayer(mem))
+        if (entity.isPlayer(mem))
         {
-            if (entity.isAlive(mem))
-            {
-                char name[32];
-                get_name(mem, i - 1, name);
-                players[i] = {
-                    true,
-                    entity.isAlive(mem),
-                    ToMeters(entity.BasePos(mem).DistTo(LocalPlayer.BasePos(mem))),
-                    entity.Team(mem),
-                    std::string(name)};
-            }
-            else
-            {
-                char name[32];
-                get_name(mem, i - 1, name);
-                players[i] = {
-                    false,
-                    entity.isAlive(mem),
-                    ToMeters(entity.BasePos(mem).DistTo(LocalPlayer.BasePos(mem))),
-                    entity.Team(mem),
-                    std::string(name)};
-            }
-
-            if (settings::nameSpoof)
-            {
-            }
-        }
-
-        if (settings::Lteam_Glow)
-        {
-            if (entity.Team(mem) == LocalPlayer.Team(mem) && entity.isPlayer(mem))
-            {
-                entity.glow(mem, settings::Lteam_Glow_color);
-            }
-            else if (entity.isGlowing(mem))
-            {
-                entity.disableGlow(mem);
-            }
-        }
-        else
-        {
-            // if(entity.isGlowing(mem))
-            //{
-            //     entity.disableGlow(mem);
-            // }
-        }
-        if (entity.ptr == localPTR)
-            continue;
-
-        if (entity.isDummy(mem))
-        {
-            if (settings::player_Glow)
-            {
-                entity.glow(mem, settings::dummy_glow_color);
-            }
-            else
-            {
-                if (entity.isGlowing(mem))
-                {
-                    entity.disableGlow(mem);
-                }
-            }
-            if (!entity.isVisibile(mem))
-                continue;
-            if (entity.Health(mem) <= 1)
-                continue;
-            Vector2D screen;
-            Vector pos = entity.V_BonePos(mem, settings::aimBone);
-            world_to_screen(mem, pos, screen);
-            if (check_in_fov(screen, settings::FOV))
-            {
-                target = entity.ptr;
-                if (settings::target_glow)
-                {
-                    entity.glow(mem, settings::target_glow_color);
-                }
-                else
-                {
-                    if (entity.isGlowing(mem))
-                    {
-                        entity.disableGlow(mem);
-                    }
-                }
-            }
-        }
-        else if (entity.isPlayer(mem))
-        {
-
             if (!entity.isAlive(mem))
                 continue;
             if (entity.isKnocked(mem))
                 continue;
-
-            if (settings::team_glow)
-            {
-                int dist = entity.BasePos(mem).DistTo(LocalPlayer.BasePos(mem));
-                if (ToMeters(dist) <= settings::GLowDist)
-                {
-
-                    switch (entity.Team(mem))
-                    {
-                    case 0:
-                        settings::team_Glow_color = Vector4(1.0f, 0.0f, 0.0f, 1.f); // Red
-                        break;
-                    case 1:
-                        settings::team_Glow_color = Vector4(0.0f, 1.0f, 0.0f, 1.f); // Green
-                        break;
-                    case 2:
-                        settings::team_Glow_color = Vector4(0.0f, 0.0f, 1.0f, 1.f); // Blue
-                        break;
-                    case 3:
-                        settings::team_Glow_color = Vector4(0.0f, 1.0f, 1.0f, 1.f); // Cyan
-                        break;
-                    case 4:
-                        settings::team_Glow_color = Vector4(1.0f, 0.0f, 1.0f, 1.f); // Magenta
-                        break;
-                    case 5:
-                        settings::team_Glow_color = Vector4(1.0f, 1.0f, 0.0f, 1.f); // Yellow
-                        break;
-                    case 6:
-                        settings::team_Glow_color = Vector4(0.0f, 0.0f, 0.0f, 1.f); // Black
-                        break;
-                    case 7:
-                        settings::team_Glow_color = Vector4(1.0f, 1.0f, 1.0f, 1.f); // White
-                        break;
-                    case 8:
-                        settings::team_Glow_color = Vector4(0.5f, 0.5f, 0.5f, 1.f); // Gray
-                        break;
-                    case 9:
-                        settings::team_Glow_color = Vector4(0.75f, 0.75f, 0.75f, 1.f); // Light Gray
-                        break;
-                    case 10:
-                        settings::team_Glow_color = Vector4(0.25f, 0.25f, 0.25f, 1.f); // Dark Gray
-                        break;
-                    case 11:
-                        settings::team_Glow_color = Vector4(1.0f, 0.5f, 0.0f, 1.f); // Orange
-                        break;
-                    case 12:
-                        settings::team_Glow_color = Vector4(0.5f, 0.0f, 0.5f, 1.f); // Purple
-                        break;
-                    case 13:
-                        settings::team_Glow_color = Vector4(0.0f, 0.5f, 0.5f, 1.f); // Teal
-                        break;
-                    case 14:
-                        settings::team_Glow_color = Vector4(1.0f, 0.75f, 0.75f, 1.f); // Pink
-                        break;
-                    case 15:
-                        settings::team_Glow_color = Vector4(0.6f, 0.4f, 0.2f, 1.f); // Brown
-                        break;
-                    case 16:
-                        settings::team_Glow_color = Vector4(0.0f, 0.0f, 0.5f, 1.f); // Navy
-                        break;
-                    case 17:
-                        settings::team_Glow_color = Vector4(0.5f, 0.5f, 0.0f, 1.f); // Olive
-                        break;
-                    case 18:
-                        settings::team_Glow_color = Vector4(0.5f, 0.0f, 0.0f, 1.f); // Maroon
-                        break;
-                    case 19:
-                        settings::team_Glow_color = Vector4(0.0f, 0.5f, 0.0f, 1.f); // Lime
-                        break;
-                    case 20:
-                        settings::team_Glow_color = Vector4(0.0f, 1.0f, 1.0f, 1.f); // Aqua
-                        break;
-                    case 21:
-                        settings::team_Glow_color = Vector4(0.29f, 0.0f, 0.51f, 1.f); // Indigo
-                        break;
-                    case 22:
-                        settings::team_Glow_color = Vector4(1.0f, 0.5f, 0.31f, 1.f); // Coral
-                        break;
-                    case 23:
-                        settings::team_Glow_color = Vector4(1.0f, 0.84f, 0.0f, 1.f); // Gold
-                        break;
-                    case 24:
-                        settings::team_Glow_color = Vector4(0.9f, 0.9f, 0.98f, 1.f); // Lavender
-                        break;
-                    default:
-                        settings::team_Glow_color = Vector4(1.0f, 0.0f, 0.0f, 1.f); // Red
-                        break;
-                    }
-
-                    entity.glow(mem, settings::team_Glow_color);
-                }
-            }
-            else if (settings::player_Glow)
-            {
-                int dist = entity.BasePos(mem).DistTo(LocalPlayer.BasePos(mem));
-                if (ToMeters(dist) <= settings::GLowDist)
-                {
-                    entity.glow(mem, settings::player_Glow_color);
-                }
-            }
-            else
-            {
-                if (entity.isGlowing(mem))
-                {
-                    entity.disableGlow(mem);
-                }
-            }
+            if (entity.ptr == localPTR)
+                continue;
 
             if (entity.Team(mem) == LocalPlayer.Team(mem))
                 continue;
+            int dist = entity.BasePos(mem).DistTo(LocalPlayer.BasePos(mem));
+            switch (settings::GLOW_type)
+            {
+            case 0:
+                if (entity.isGlowing(mem))
+                    entity.disableGlow(mem);
+                break;
+            case 1:
+                if (!entity.isGlowing(mem))
+                {
+                    if (ToMeters(dist) <= settings::GLowDist)
+                    {
+                        entity.glow(mem, settings::player_Glow_color);
+                    }
+                }
+                break;
+            case 2:
+                if (!entity.isGlowing(mem))
+                {
+                    if (ToMeters(dist) <= settings::GLowDist)
+                    {
+                        Vector team_Glow_color = Vector(0.f, 0.f, 0.f);
+                        switch (entity.Team(mem))
+                        {
+                        case 0:
+                            team_Glow_color = Vector(1.0f, 0.0f, 0.f); // Red
+                            break;
+                        case 1:
+                            team_Glow_color = Vector(0.0f, 1.0f, 0.0f); // Green
+                            break;
+                        case 2:
+                            team_Glow_color = Vector(0.0f, 0.0f, 1.0f); // Blue
+                            break;
+                        case 3:
+                            team_Glow_color = Vector(0.0f, 1.0f, 1.0f); // Cyan
+                            break;
+                        case 4:
+                            team_Glow_color = Vector(1.0f, 0.0f, 1.0f); // Magenta
+                            break;
+                        case 5:
+                            team_Glow_color = Vector(1.0f, 1.0f, 0.0f); // Yellow
+                            break;
+                        case 6:
+                            team_Glow_color = Vector(0.0f, 0.0f, 0.0f); // Black
+                            break;
+                        case 7:
+                            team_Glow_color = Vector(1.0f, 1.0f, 1.0f); // White
+                            break;
+                        case 8:
+                            team_Glow_color = Vector(0.5f, 0.5f, 0.5f); // Gray
+                            break;
+                        case 9:
+                            team_Glow_color = Vector(0.75f, 0.75f, 0.75f); // Light Gray
+                            break;
+                        case 10:
+                            team_Glow_color = Vector(1.0f, 0.5f, 0.0f); // Orange
+                            break;
+                        case 12:
+                            team_Glow_color = Vector(0.5f, 0.0f, 0.5f); // Purple
+                            break;
+                        case 13:
+                            team_Glow_color = Vector(0.0f, 0.5f, 0.5f); // Teal
+                            break;
+                        case 14:
+                            team_Glow_color = Vector(1.0f, 0.75f, 0.75f); // Pink
+                            break;
+                        case 15:
+                            team_Glow_color = Vector(0.6f, 0.4f, 0.2f); // Brown
+                            break;
+                        case 16:
+                            team_Glow_color = Vector(0.0f, 0.0f, 0.5f); // Navy
+                            break;
+                        case 17:
+                            team_Glow_color = Vector(0.5f, 0.5f, 0.0f); // Olive
+                            break;
+                        case 18:
+                            team_Glow_color = Vector(0.5f, 0.0f, 0.0f); // Maroon
+                            break;
+                        case 19:
+                            team_Glow_color = Vector(0.0f, 0.5f, 0.0f); // Lime
+                            break;
+                        case 20:
+                            team_Glow_color = Vector(0.0f, 1.0f, 1.0f); // Aqua
+                            break;
+                        case 21:
+                            team_Glow_color = Vector(0.29f, 0.0f, 0.51f); // Indigo
+                            break;
+                        case 22:
+                            team_Glow_color = Vector(1.0f, 0.5f, 0.31f); // Coral
+                            break;
+                        case 23:
+                            team_Glow_color = Vector(1.0f, 0.84f, 0.0f); // Gold
+                            break;
+                        case 24:
+                            team_Glow_color = Vector(0.9f, 0.9f, 0.98f); // Lavender
+                            break;
+                        default:
+                            team_Glow_color = Vector(1.0f, 0.0f, 0.0f); // Red
+                            break;
+                        }
+                        entity.glow(mem, team_Glow_color);
+                    }
+                }
+                break;
+            case 3:
+                // health
+                // Vector health_Glow_color = Vector(0.f, 0.f, 0.f);
+                break;
+            case 4:
+                // rainbow
+                if (!entity.isGlowing(mem))
+                    entity.glow(mem, settings::RainBow_glow_color);
+                break;
+
+            default:
+                if (entity.isGlowing(mem))
+                    entity.disableGlow(mem);
+                break;
+            }
 
             if (!entity.isVisibile(mem))
                 continue;
-            int dist = entity.BasePos(mem).DistTo(LocalPlayer.BasePos(mem));
+
             if (ToMeters(dist) >= settings::AimDist)
                 continue;
 
@@ -332,35 +256,16 @@ void entity_loop(Memory &mem)
                 target = entity.ptr;
             }
         }
-        else if (entity.isItem(mem))
-        {
-            if (settings::loot_Glow)
-            {
-                mem.Write<int>(entity.ptr + 0x02f0, 1363184265);
-            }
-            else
-            {
-                if (entity.isGlowing(mem))
-                {
-                    mem.Write<int>(entity.ptr + 0x02f0, 0);
-                }
-            }
-        }
-        else if (entity.isWayPoint(mem))
-        {
-            settings::way_poit_pos = entity.BasePos(mem); // CPlayerWaypoint
-
-            if (settings::way_poit_pos.x == 0 && settings::way_poit_pos.y == 0 && settings::way_poit_pos.z == 0)
-                continue;
-        }
     }
 }
 
 void localPlayer_function(Memory &mem)
 {
+    settings::RainBow_glow_color = {std::get<0>(Rainbow(settings::rainbowSpeed)), std::get<1>(Rainbow(settings::rainbowSpeed)), std::get<2>(Rainbow(settings::rainbowSpeed))};
+    settings::weapon_Glow_color = {std::get<0>(Rainbow(settings::rainbowSpeed)), std::get<1>(Rainbow(settings::rainbowSpeed)), std::get<2>(Rainbow(settings::rainbowSpeed))};
 
     Entity LocalPlayer(localPTR);
-    if (true)
+    if (LocalPlayer.isAlive(mem) && !LocalPlayer.isKnocked(mem))
     {
 
         uint64_t WeaponModeHandle = mem.Read<uint64_t>(localPTR + offsets::OFFSET_ViewModels) & 0xFFFF; // m_hViewModels
@@ -370,18 +275,17 @@ void localPlayer_function(Memory &mem)
         {
             mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_ENABLE, 1);
             mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_THROUGH_WALLS, 5);
-            // GeneralGlowMode, BorderGlowMode, BorderSize, TransparentLevel;
-            // isSemiAuto = 0x1C2C
-
             mem.Write<glowMode>(ModelPtr + offsets::GLOW_TYPE, {118, -86, 100, 0});
+
             if (settings::rainbow_weapon_glow)
-                settings::weapon_glow_color = {std::get<0>(Rainbow(settings::rainbowSpeed)), std::get<1>(Rainbow(settings::rainbowSpeed)), std::get<2>(Rainbow(settings::rainbowSpeed)), 1.f};
-            mem.Write<Vector4>(ModelPtr + offsets::GLOW_COLOR, settings::weapon_glow_color);
+                mem.Write<Vector>(ModelPtr + offsets::GLOW_COLOR, settings::weapon_Glow_color);
+            else
+                mem.Write<Vector>(ModelPtr + offsets::GLOW_COLOR, settings::weapon_Glow_color);
         }
         else
         {
             mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_ENABLE, 2);
-            mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_THROUGH_WALLS, 2);
+            mem.Write<int>(ModelPtr + offsets::OFFSET_GLOW_THROUGH_WALLS, 5);
         }
 
         if (settings::hand_glow)
@@ -413,11 +317,10 @@ void localPlayer_function(Memory &mem)
         }
     }
 
-    if (target != NULL)
+    if (target != NULL && settings::aimbot)
     {
         QAngle CalculatedAngles = QAngle(0, 0, 0);
         Entity targ(target);
-
         if (settings::target_glow)
         {
             targ.glow(mem, settings::target_glow_color);
@@ -430,15 +333,9 @@ void localPlayer_function(Memory &mem)
             }
         }
 
-        if (mem.Read<int>(baseAddress + offsets::OFFSET_IS_ZOOM + 0x8) == 5 && mem.Read<int>(baseAddress + offsets::OFFSET_IS_Shooting + 0x8) == 5)
+        if (mem.Read<int>(baseAddress + offsets::OFFSET_IS_ZOOM + 0x8) == 5)
         {
             QAngle angle = targ.CalculateBestBoneAim(mem, LocalPlayer, settings::aimBone, settings::AimDist, settings::rcs_aimbot, settings::FOV);
-            if (angle.x != 0)
-                LocalPlayer.setViewAngles_QAngle(mem, angle);
-        }
-        else if (mem.Read<int>(baseAddress + offsets::OFFSET_IS_ZOOM + 0x8) == 4 && mem.Read<int>(baseAddress + offsets::OFFSET_IS_Shooting + 0x8) == 5)
-        {
-            QAngle angle = targ.CalculateBestBoneAim(mem, LocalPlayer, settings::aimBone, settings::AimDist / 4, settings::rcs_aimbot / 2, settings::FOV);
             if (angle.x != 0)
                 LocalPlayer.setViewAngles_QAngle(mem, angle);
         }
@@ -451,12 +348,9 @@ void localPlayer_function(Memory &mem)
     {
         if (settings::RSC)
         {
+
             LocalPlayer.recoilControl(mem, 100.f);
         }
-    }
-
-    if (settings::goToWaypoint)
-    {
     }
 }
 
@@ -486,22 +380,61 @@ void printMemoryLocation(Memory &apex, uint64_t location, uint64_t size)
     printf("End Script\n\n");
 }
 
-void ReadScriptFinder(Memory &mem)
+inline static void SilentAim(Memory &mem)
 {
-}
+    auto netChannel = mem.Read<intptr_t>(baseAddress + NetChannel);
+    auto chokedCommands = mem.Read<ulong>(netChannel + 0x2028);
+    printf("chokedCommands rn%i\n", chokedCommands);
+    if (chokedCommands <= 0)
+        return;
 
-void script_load(Memory &mem, char *scriptArry, size_t size)
-{
-
-    uint64_t base_addr = baseAddress + 0x29276597A00; // 0x29276597A00
-    bool found = false;
-    while (!found)
+    printf("silent 1\n");
+    int current_number = mem.Read<int>(baseAddress + CurrentCommand);
+    int iDesiredCmdNumber = current_number + 1;
+    auto cmdBase = mem.Read<intptr_t>(baseAddress + Commands + 248);
+    auto old_usercmd = cmdBase + (552 * (((intptr_t)iDesiredCmdNumber - 1) % 750));
+    auto usercmd = cmdBase + (552 * ((intptr_t)iDesiredCmdNumber % 750));
+    printf("silent 2\n");
+    while (mem.Read<int>((intptr_t)usercmd) < iDesiredCmdNumber)
     {
-        base_addr = base_addr + sizeof(char);
-
-        mem.ReadArray<char>(base_addr, scriptArry, size);
-        printf("addr %p\n", base_addr);
+        std::this_thread::yield();
     }
-    printf("----------------\n");
-    printf(" script found\n");
+    mem.Write<Vector2D>(old_usercmd + 0xC, settings::calangle);
+    mem.Write<double>(netChannel + 0x2108, 0);
+    printf("silent!\n");
+}
+inline static void Choke(Memory &mem, intptr_t netChannel)
+{
+    mem.Write<double>(netChannel + 0x2108, std::numeric_limits<float>::max());
+}
+inline static void ChokeLoop(Memory &mem)
+{
+    // while (true)
+    // {
+    if (!settings::aimbot)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+        return;
+    }
+    uint64_t netChannel = mem.Read<intptr_t>(baseAddress + NetChannel);
+
+    ulong chokedCommands = mem.Read<ulong>(netChannel + 0x2028);
+    if (chokedCommands > 7)
+    {
+        mem.Write<double>(netChannel + 0x2108, 0);
+        return;
+    }
+    if (settings::aimbot)
+    {
+
+        float currentTime = mem.Read<float>(baseAddress + offsets::OFFSET_GlobalVars + 0x28);
+        float interval_per_tick = mem.Read<float>(baseAddress + offsets::OFFSET_GlobalVars + 0x30);
+
+        float readyTime = mem.Read<float>(localWeponPTR + m_nextReadyTime) > mem.Read<float>(localWeponPTR + m_nextPrimaryAttackTime) ? mem.Read<float>(localWeponPTR + m_nextReadyTime) : mem.Read<float>(localWeponPTR + m_nextPrimaryAttackTime);
+        if (currentTime > readyTime - interval_per_tick && mem.Read<ulong>(netChannel + 0x2028) == 0)
+        {
+            Choke(mem, netChannel);
+        }
+    }
+    // }
 }

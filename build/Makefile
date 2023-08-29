@@ -358,30 +358,6 @@ src/SDK/Memory/memory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MemflowBase.dir/build.make CMakeFiles/MemflowBase.dir/src/SDK/Memory/memory.cpp.s
 .PHONY : src/SDK/Memory/memory.cpp.s
 
-src/SDK/entity.o: src/SDK/entity.cpp.o
-.PHONY : src/SDK/entity.o
-
-# target to build an object file
-src/SDK/entity.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MemflowBase.dir/build.make CMakeFiles/MemflowBase.dir/src/SDK/entity.cpp.o
-.PHONY : src/SDK/entity.cpp.o
-
-src/SDK/entity.i: src/SDK/entity.cpp.i
-.PHONY : src/SDK/entity.i
-
-# target to preprocess a source file
-src/SDK/entity.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MemflowBase.dir/build.make CMakeFiles/MemflowBase.dir/src/SDK/entity.cpp.i
-.PHONY : src/SDK/entity.cpp.i
-
-src/SDK/entity.s: src/SDK/entity.cpp.s
-.PHONY : src/SDK/entity.s
-
-# target to generate assembly for a file
-src/SDK/entity.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MemflowBase.dir/build.make CMakeFiles/MemflowBase.dir/src/SDK/entity.cpp.s
-.PHONY : src/SDK/entity.cpp.s
-
 src/UI/window.o: src/UI/window.cpp.o
 .PHONY : src/UI/window.o
 
@@ -515,9 +491,6 @@ help:
 	@echo "... src/SDK/Memory/memory.o"
 	@echo "... src/SDK/Memory/memory.i"
 	@echo "... src/SDK/Memory/memory.s"
-	@echo "... src/SDK/entity.o"
-	@echo "... src/SDK/entity.i"
-	@echo "... src/SDK/entity.s"
 	@echo "... src/UI/window.o"
 	@echo "... src/UI/window.i"
 	@echo "... src/UI/window.s"

@@ -53,7 +53,14 @@ int Entity::Health(Memory &mem)
 {
 	return mem.Read<int>(ptr + offsets::OFFSET_HEALTH);
 }
-
+int Entity::Shield(Memory &mem)
+{
+	return mem.Read<int>(ptr + offsets::OFFSET_SHIELD);
+}
+int Entity::MaxHealth(Memory &mem)
+{
+	return mem.Read<int>(ptr + offsets::OFFSET_MAXSHIELD);
+}
 float Entity::getLastVisTime(Memory &mem)
 {
 	return mem.Read<float>(ptr + offsets::OFFSET_VISIBLE_TIME);
@@ -217,13 +224,15 @@ QAngle Entity::CalculateBestBoneAim(Memory &mem, Entity LocaPlayer, int boneLock
 	}
 
 	NormalizeAngles(Delta);
+	
+	settings::calangle = Vector2D(Delta.x,Delta.y);
 
 	QAngle SmoothedAngles = ViewAngles + Delta / smothnes;
 
 	return SmoothedAngles;
 }
 
-void Entity::glow(Memory &mem, Vector4 Color)
+void Entity::glow(Memory &mem, Vector Color)
 {
 
 	//   GeneralGlowMode, BorderGlowMode, BorderSize, TransparentLevel
@@ -232,7 +241,7 @@ void Entity::glow(Memory &mem, Vector4 Color)
 	// 2, 108, 40, 96
 	// glowMode glowStyle = { 0, 118, 125, 100 }; //Default Glow is Outline
 
-	mem.Write<Vector>(ptr + offsets::GLOW_COLOR, Vector(Color.x, Color.y, Color.z)); // red
+	mem.Write<Vector>(ptr + offsets::GLOW_COLOR, Color); // red
 	mem.Write<int>(ptr + offsets::OFFSET_GLOW_ENABLE, 1);							 // Enable Glow
 	mem.Write<int>(ptr + offsets::OFFSET_GLOW_THROUGH_WALLS, 2);					 // Enable Glow Through Walls
 	mem.Write<glowMode>(ptr + offsets::GLOW_TYPE, {118, -86, 50, 125});				 // Glow Mode
@@ -256,3 +265,5 @@ void Entity::disableGlow(Memory &mem)
 {
 	mem.Write<int>(ptr + offsets::OFFSET_ITEM_GLOW, 1411417991);
 }
+
+
