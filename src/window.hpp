@@ -1,3 +1,5 @@
+#ifndef WINDOW_HPP
+#define WINDOW_HPP
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
@@ -16,8 +18,7 @@
 #include <fstream>
 #include <thread>
 #include <functional>
-#include "window.hpp"
-#include "../SDK/offsets.h"
+#include "Modules.h"
 
 static void glfw_error_callback(int error, const char *description)
 {
@@ -35,12 +36,31 @@ static bool weapon_menu = true;
 static bool aimbot_menu = true;
 static bool misc_menu = true;
 
-void CheatMeun()
+static void CheatMeun(Memory &mem)
 {
     if (testing_menu)
     {
-        ImGui::Begin("Testing");
-        
+        ImGui::Begin("Lobby");
+        for (int i = 0; i < 120; ++i)
+        {
+            uint64_t entityPTR = GetEntitys(mem, i);
+            if (entityPTR == 0x0)
+                continue;
+
+            Entity entity(entityPTR);
+            if(!entity.isPlayer(mem))
+                continue;
+            char name[33] = { 0 };
+            entity.get_Name(mem,i,name);
+
+            char class_name[33] = { 0 };
+            entity.get_class_name(mem,class_name);
+
+            ImGui::Text(class_name);
+            ImGui::SameLine();
+            ImGui::Text(name);
+        }
+        //ImGui::PopStyleColor();
         ImGui::End();
     }
     if (aimbot_menu)
@@ -78,58 +98,7 @@ void CheatMeun()
     if (glow_menu)
     {
         ImGui::Begin("Glowing functions");
-        ImGui::Checkbox("Blood hound Glow", &settings::BloodGlow);
-        //std::string Glow_type_str = "ERROR";
-        //switch (settings::GLOW_type)
-        //{
-        //case 0:
-        //    Glow_type_str = "None";
-        //    break;
-        //case 1:
-        //    Glow_type_str = "Glow";
-        //    break;
-        //case 2:
-        //    Glow_type_str = "Team";
-        //    break;
-        //case 3:
-        //    Glow_type_str = "Health";
-        //    break;
-        //case 4:
-        //    Glow_type_str = "RainBow";
-        //    break;
-//
-        //default:
-        //    Glow_type_str = "ERROR";
-        //    break;
-        //}
-        //ImGui::Text(Glow_type_str.c_str());
-        //if (ImGui::Button("None"))
-        //    settings::GLOW_type = 0;
-        //ImGui::SameLine();
-        //if (ImGui::Button("Glow"))
-        //    settings::GLOW_type = 1;
-        //ImGui::SameLine();
-        //if (ImGui::Button("Team"))
-        //    settings::GLOW_type = 2;
-        //ImGui::SameLine();
-        //if (ImGui::Button("Health"))
-        //    settings::GLOW_type = 3;
-        //ImGui::SameLine();
-        //if (ImGui::Button("Rainbow"))
-        //    settings::GLOW_type = 4;
 
-        // ImGui::Checkbox("Loot Glow", &settings::loot_Glow);
-
-        //ImGui::Checkbox("Hands Glow", &settings::hand_glow);
-        //ImGui::SameLine();
-        //ImGui::Checkbox("Hands Glow rainbow", &settings::rainbow_hand_glow);
-//
-        //ImGui::Checkbox("Wepon Glow", &settings::weapon_glow);
-        //ImGui::SameLine();
-        //ImGui::Checkbox("Wepon Glow rainbow", &settings::rainbow_weapon_glow);
-//
-        //ImGui::SliderFloat("Rainbow Speed", &settings::rainbowSpeed, .0005f, .05f);
-        //ImGui::SliderInt("Glow Distance", &settings::GLowDist, 10, 1000);
         ImGui::End();
     }
     if (color_menu)
@@ -147,14 +116,12 @@ void CheatMeun()
     {
         ImGui::Begin("Misc");
 
-        ImGui::Checkbox("3rd Person", &settings::thierdPerson);
+        
         ImGui::Checkbox("auto jumpGraple for path", &settings::autojumpPath);
         ImGui::End();
     }
-
-    
 }
-void StatMenu()
+void StatMenu(Memory &mem)
 {
     ImGui::Begin("Cheats List");
 
@@ -171,11 +138,22 @@ void StatMenu()
     ImGui::Text(settings::GameMode);
     ImGui::End();
 
-    CheatMeun();
+    CheatMeun(mem);
+    CGlobalVars GlobalVars = mem.Read<CGlobalVars>(baseAddress + offsets::OFFSET_GlobalVars);
+    mem.Read<CGlobalVars>(baseAddress + offsets::OFFSET_GlobalVars, GlobalVars);
+    localPTR = mem.Read<uint64_t>(baseAddress + offsets::OFFSET_LOCAL_ENT);
+    localWeponPTR = WeaponXEntity(getWeapon(mem)).ptr;
+    // printf("------------------------\n");
+    entity_loop(mem);
+    localPlayer_function(mem);
+      
 }
 
+
+
+
 // Main code
-int Window::RunWindow()
+int RunWindow(Memory &mem)
 {
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
@@ -283,7 +261,7 @@ int Window::RunWindow()
 
         // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 
-        StatMenu();
+        StatMenu(mem);
 
         // Rendering
         ImGui::Render();
@@ -318,3 +296,4 @@ int Window::RunWindow()
 
     return 0;
 }
+#endif

@@ -83,24 +83,10 @@ CMakeFiles/MemflowBase.dir/src/SDK/Memory/memory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MemflowBase.dir/src/SDK/Memory/memory.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cam/Desktop/CMOD/src/SDK/Memory/memory.cpp -o CMakeFiles/MemflowBase.dir/src/SDK/Memory/memory.cpp.s
 
-CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
-CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o: /home/cam/Desktop/CMOD/src/UI/window.cpp
-CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o -MF CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o.d -o CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o -c /home/cam/Desktop/CMOD/src/UI/window.cpp
-
-CMakeFiles/MemflowBase.dir/src/UI/window.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MemflowBase.dir/src/UI/window.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cam/Desktop/CMOD/src/UI/window.cpp > CMakeFiles/MemflowBase.dir/src/UI/window.cpp.i
-
-CMakeFiles/MemflowBase.dir/src/UI/window.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MemflowBase.dir/src/UI/window.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cam/Desktop/CMOD/src/UI/window.cpp -o CMakeFiles/MemflowBase.dir/src/UI/window.cpp.s
-
 CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o: /home/cam/Desktop/CMOD/src/classs/entity.cpp
 CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o -MF CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o.d -o CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o -c /home/cam/Desktop/CMOD/src/classs/entity.cpp
 
 CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.i: cmake_force
@@ -114,7 +100,7 @@ CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o: /home/cam/Desktop/CMOD/src/classs/weapon.cpp
 CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o -MF CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o.d -o CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o -c /home/cam/Desktop/CMOD/src/classs/weapon.cpp
 
 CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.i: cmake_force
@@ -128,7 +114,7 @@ CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/src/main.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/src/main.cpp.o: /home/cam/Desktop/CMOD/src/main.cpp
 CMakeFiles/MemflowBase.dir/src/main.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MemflowBase.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MemflowBase.dir/src/main.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/src/main.cpp.o -MF CMakeFiles/MemflowBase.dir/src/main.cpp.o.d -o CMakeFiles/MemflowBase.dir/src/main.cpp.o -c /home/cam/Desktop/CMOD/src/main.cpp
 
 CMakeFiles/MemflowBase.dir/src/main.cpp.i: cmake_force
@@ -142,7 +128,7 @@ CMakeFiles/MemflowBase.dir/src/main.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.o: /home/cam/Desktop/CMOD/libs/imgui/imgui.cpp
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.o -MF CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.o.d -o CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.o -c /home/cam/Desktop/CMOD/libs/imgui/imgui.cpp
 
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.i: cmake_force
@@ -156,7 +142,7 @@ CMakeFiles/MemflowBase.dir/libs/imgui/imgui.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.o: /home/cam/Desktop/CMOD/libs/imgui/imgui_demo.cpp
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.o -MF CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.o.d -o CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.o -c /home/cam/Desktop/CMOD/libs/imgui/imgui_demo.cpp
 
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.i: cmake_force
@@ -170,7 +156,7 @@ CMakeFiles/MemflowBase.dir/libs/imgui/imgui_demo.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.o: /home/cam/Desktop/CMOD/libs/imgui/imgui_draw.cpp
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.o -MF CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.o.d -o CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.o -c /home/cam/Desktop/CMOD/libs/imgui/imgui_draw.cpp
 
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.i: cmake_force
@@ -184,7 +170,7 @@ CMakeFiles/MemflowBase.dir/libs/imgui/imgui_draw.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.o: /home/cam/Desktop/CMOD/libs/imgui/imgui_impl_glfw.cpp
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.o -MF CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.o.d -o CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.o -c /home/cam/Desktop/CMOD/libs/imgui/imgui_impl_glfw.cpp
 
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.i: cmake_force
@@ -198,7 +184,7 @@ CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_glfw.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.o: /home/cam/Desktop/CMOD/libs/imgui/imgui_impl_opengl3.cpp
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.o -MF CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.o -c /home/cam/Desktop/CMOD/libs/imgui/imgui_impl_opengl3.cpp
 
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.i: cmake_force
@@ -212,7 +198,7 @@ CMakeFiles/MemflowBase.dir/libs/imgui/imgui_impl_opengl3.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.o: /home/cam/Desktop/CMOD/libs/imgui/imgui_stdlib.cpp
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.o -MF CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.o.d -o CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.o -c /home/cam/Desktop/CMOD/libs/imgui/imgui_stdlib.cpp
 
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.i: cmake_force
@@ -226,7 +212,7 @@ CMakeFiles/MemflowBase.dir/libs/imgui/imgui_stdlib.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.o: /home/cam/Desktop/CMOD/libs/imgui/imgui_tables.cpp
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.o -MF CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.o.d -o CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.o -c /home/cam/Desktop/CMOD/libs/imgui/imgui_tables.cpp
 
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.i: cmake_force
@@ -240,7 +226,7 @@ CMakeFiles/MemflowBase.dir/libs/imgui/imgui_tables.cpp.s: cmake_force
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o: CMakeFiles/MemflowBase.dir/flags.make
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o: /home/cam/Desktop/CMOD/libs/imgui/imgui_widgets.cpp
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o: CMakeFiles/MemflowBase.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o -MF CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.o -c /home/cam/Desktop/CMOD/libs/imgui/imgui_widgets.cpp
 
 CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.i: cmake_force
@@ -254,7 +240,6 @@ CMakeFiles/MemflowBase.dir/libs/imgui/imgui_widgets.cpp.s: cmake_force
 # Object files for target MemflowBase
 MemflowBase_OBJECTS = \
 "CMakeFiles/MemflowBase.dir/src/SDK/Memory/memory.cpp.o" \
-"CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o" \
 "CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o" \
 "CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o" \
 "CMakeFiles/MemflowBase.dir/src/main.cpp.o" \
@@ -271,7 +256,6 @@ MemflowBase_OBJECTS = \
 MemflowBase_EXTERNAL_OBJECTS =
 
 build/MemflowBase: CMakeFiles/MemflowBase.dir/src/SDK/Memory/memory.cpp.o
-build/MemflowBase: CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o
 build/MemflowBase: CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o
 build/MemflowBase: CMakeFiles/MemflowBase.dir/src/classs/weapon.cpp.o
 build/MemflowBase: CMakeFiles/MemflowBase.dir/src/main.cpp.o
@@ -288,7 +272,7 @@ build/MemflowBase: /usr/lib/libglfw.so.3.3
 build/MemflowBase: /usr/lib/libGL.so
 build/MemflowBase: /usr/lib/libGLU.so
 build/MemflowBase: CMakeFiles/MemflowBase.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable build/MemflowBase"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cam/Desktop/CMOD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable build/MemflowBase"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MemflowBase.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

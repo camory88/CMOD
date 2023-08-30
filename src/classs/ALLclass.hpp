@@ -47,6 +47,7 @@ public:
 	Vector2D ScreenRightkneesBone{};
 	Vector2D ScreenRightlegBone{};
 };
+uint64_t GetEntitys(Memory& mem, int idx);
 
 class Entity
 {
@@ -64,7 +65,6 @@ public:
 	bool isDummy(Memory &mem);
 	bool isItem(Memory &mem);
 	bool isVisibile(Memory &mem);
-	bool isGlowing(Memory &mem);
 	bool isWayPoint(Memory &mem);
 
 	float getLastVisTime(Memory &mem);
@@ -86,13 +86,11 @@ public:
 	QAngle Q_BonePos(Memory &mem, int BoneId);
 	QAngle CalculateBestBoneAim(Memory &mem, Entity LocaPlayer, int boneLock, int max_dists, int smothnes, float max_fov);
 
-	void enableGlow(Memory &mem);
-	void disableGlow(Memory &mem);
 	void setViewAngles_Vector(Memory &mem, Vector angle);
 	void setViewAngles_QAngle(Memory &mem, QAngle angle);
 	void recoilControl(Memory &mem, float smoothnes);
 	void get_class_name(Memory &mem, char *out_str);
-	void glow(Memory &mem, Vector Color);
+	void get_Name(Memory &mem, uint64_t index, char *name);
 };
 
 class WeaponXEntity
@@ -213,11 +211,5 @@ inline void get_name(Memory &mem, uint64_t index, char *name)
 	index *= 0x10;
 	uint64_t name_ptr = 0;
 	mem.Read<uint64_t>(baseAddress + offsets::OFFSET_NAME_LIST + index, name_ptr);
-	mem.ReadArray<char>(name_ptr, name, 32);
-}
-inline void get_pat(Memory &mem, uint64_t addr, char *name)
-{
-	uint64_t name_ptr = 0;
-	mem.Read<uint64_t>(addr, name_ptr);
 	mem.ReadArray<char>(name_ptr, name, 32);
 }

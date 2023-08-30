@@ -232,36 +232,16 @@ QAngle Entity::CalculateBestBoneAim(Memory &mem, Entity LocaPlayer, int boneLock
 	return SmoothedAngles;
 }
 
-void Entity::glow(Memory &mem, Vector Color)
+void Entity::get_Name(Memory &mem, uint64_t index, char *name)
 {
-
-	//   GeneralGlowMode, BorderGlowMode, BorderSize, TransparentLevel
-	// 0, 4, 69, 125 outline neonstripe
-	// 0, 118, 100, 100  outline colored
-	// 2, 108, 40, 96
-	// glowMode glowStyle = { 0, 118, 125, 100 }; //Default Glow is Outline
-
-	//mem.Write<Vector>(ptr + offsets::GLOW_COLOR, Color); // red
-	//mem.Write<int>(ptr + offsets::OFFSET_GLOW_ENABLE, 1);							 // Enable Glow
-	//mem.Write<int>(ptr + offsets::OFFSET_GLOW_THROUGH_WALLS, 2);					 // Enable Glow Through Walls
-	//mem.Write<glowMode>(ptr + offsets::GLOW_TYPE, {118, -86, 50, 125});				 // Glow Mode
+	index *= 0x10;
+	uint64_t name_ptr = 0;
+	mem.Read<uint64_t>(baseAddress + offsets::OFFSET_NAME_LIST + index, name_ptr);
+	mem.ReadArray<char>(name_ptr, name, 32);
 }
 
 
-
-bool Entity::isGlowing(Memory &mem)
+uint64_t GetEntitys(Memory& mem, int idx)
 {
-	//return mem.Read<int>(ptr + offsets::OFFSET_ITEM_GLOW) == 1363184265;
+	return mem.Read<uint64_t>(baseAddress + offsets::OFFSET_ENTITYLIST + (idx << 5));
 }
-
-void Entity::enableGlow(Memory &mem)
-{
-	//mem.Write<int>(ptr + offsets::OFFSET_ITEM_GLOW, 1363184265);
-}
-
-void Entity::disableGlow(Memory &mem)
-{
-	//mem.Write<int>(ptr + offsets::OFFSET_ITEM_GLOW, 1411417991);
-}
-
-

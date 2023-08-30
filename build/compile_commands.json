@@ -7,12 +7,6 @@
 },
 {
   "directory": "/home/cam/Desktop/CMOD/build",
-  "command": "/usr/bin/g++  -I/home/cam/Desktop/CMOD/build/memflow/src/memflow/memflow-ffi -I/home/cam/Desktop/CMOD/build/libs/imgui -g -std=gnu++17 -Wno-multichar -std=c++17 -Wall -pg -flto -Wextra -lm -Wl,--no-as-needed -ldl -lpthread -D_GLIBCXX_USE_NANOSLEEP -g3 -o CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o -c /home/cam/Desktop/CMOD/src/UI/window.cpp",
-  "file": "/home/cam/Desktop/CMOD/src/UI/window.cpp",
-  "output": "CMakeFiles/MemflowBase.dir/src/UI/window.cpp.o"
-},
-{
-  "directory": "/home/cam/Desktop/CMOD/build",
   "command": "/usr/bin/g++  -I/home/cam/Desktop/CMOD/build/memflow/src/memflow/memflow-ffi -I/home/cam/Desktop/CMOD/build/libs/imgui -g -std=gnu++17 -Wno-multichar -std=c++17 -Wall -pg -flto -Wextra -lm -Wl,--no-as-needed -ldl -lpthread -D_GLIBCXX_USE_NANOSLEEP -g3 -o CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o -c /home/cam/Desktop/CMOD/src/classs/entity.cpp",
   "file": "/home/cam/Desktop/CMOD/src/classs/entity.cpp",
   "output": "CMakeFiles/MemflowBase.dir/src/classs/entity.cpp.o"

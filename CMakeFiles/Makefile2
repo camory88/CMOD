@@ -83,7 +83,7 @@ clean: CMakeFiles/MemflowBase.dir/clean
 CMakeFiles/memflow.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/memflow.dir/build.make CMakeFiles/memflow.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/memflow.dir/build.make CMakeFiles/memflow.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/cam/Desktop/CMOD/CMakeFiles --progress-num=15,16,17,18,19,20,21,22 "Built target memflow"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/cam/Desktop/CMOD/CMakeFiles --progress-num=14,15,16,17,18,19,20,21 "Built target memflow"
 .PHONY : CMakeFiles/memflow.dir/all
 
 # Build rule for subdir invocation for target.
@@ -109,12 +109,12 @@ CMakeFiles/memflow.dir/clean:
 CMakeFiles/MemflowBase.dir/all: CMakeFiles/memflow.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MemflowBase.dir/build.make CMakeFiles/MemflowBase.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MemflowBase.dir/build.make CMakeFiles/MemflowBase.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/cam/Desktop/CMOD/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target MemflowBase"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/cam/Desktop/CMOD/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13 "Built target MemflowBase"
 .PHONY : CMakeFiles/MemflowBase.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/MemflowBase.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cam/Desktop/CMOD/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cam/Desktop/CMOD/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MemflowBase.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cam/Desktop/CMOD/CMakeFiles 0
 .PHONY : CMakeFiles/MemflowBase.dir/rule
