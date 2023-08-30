@@ -28,7 +28,7 @@ warning: ambiguous glob re-exports
     |                 --------------- but the name `util` in the type namespace is also re-exported here
 
 warning: `memflow` (lib) generated 3 warnings
-    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+    Finished dev [unoptimized + debuginfo] target(s) in 3.37s
 warning: the following packages contain code that will be rejected by a future version of Rust: criterion v0.3.2 (https://github.com/h33p/criterion.rs.git?branch=tput#e6a0f215)
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
 warning: ambiguous glob re-exports
@@ -61,6 +61,6 @@ warning: ambiguous glob re-exports
     |                 --------------- but the name `util` in the type namespace is also re-exported here
 
 warning: `memflow` (lib) generated 3 warnings
-    Finished release [optimized] target(s) in 0.05s
+    Finished release [optimized] target(s) in 0.06s
 warning: the following packages contain code that will be rejected by a future version of Rust: criterion v0.3.2 (https://github.com/h33p/criterion.rs.git?branch=tput#e6a0f215)
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
